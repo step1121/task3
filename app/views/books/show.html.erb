@@ -1,0 +1,21 @@
+<% if notice %>
+<%= notice %>
+<% end %>
+
+<%= render 'users/shownew', user: @user %>
+  
+  
+<div>
+  <p><%= image_tag @book.user.get_profile_image(100,100) %>
+  <p><%= @book.user.name %></p>
+  <p><%= @book.title %></p>
+  <p><%= @book.body %></p>
+</div>
+  
+  <% if @book.user == current_user %>
+    <%= link_to "編集", edit_book_path(@book.id) %>
+  <% end %>
+  
+  <% if @book.user == current_user %>
+    <%= link_to "削除", book_path(@book), method: :delete,"data-confirm" => "Are you sure?" %>
+  <% end %>

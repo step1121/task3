@@ -1,0 +1,24 @@
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>error prohibited this obj from being saved
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%= render 'users/shownew', user: @user %>
+  
+  
+  
+<% @books.each do |book| %>
+<div>
+  <p><%= image_tag book.user.get_profile_image(100,100) %></p>
+    <%= link_to book_path(book.id) do %>
+    <%= book.title %>
+  <% end %>
+  <p><%= book.body %></p>
+</div>
+<% end %>
