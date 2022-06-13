@@ -7,7 +7,10 @@
   <% @books.each do |book| %>
 <div>
   <p><%= image_tag book.user.get_profile_image(100,100) %></p>
-  <p><%= book.title %></p>
+  <p><%= link_to book_path(book.id) do %>
+    <%= book.title %>
+    <% end %>
+  </p>
   <p><%= book.body %></p>
 </div>
 <% end %>
