@@ -3,7 +3,7 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>User info</h2>
       <% if @user.errors.any? %>
-      <%= @user.errors.count %>error prohibited this obj from being saved
+       <h3><%= @user.errors.count %> error prohibited this obj from being saved</h3>
       <ul>
         <% @user.errors.full_messages.each do |message| %>
          <li><%= message %></li>
@@ -13,20 +13,20 @@
       <%= form_with model: @user do |f| %>
         <div class="form-group">
           <label for="inputName">Name</label>
-          <input class="form-control name" type="text" name="user[name]" id="user_name">
+          <%= f.text_field :name, class:"form-control"%>
         </div>
         <div class="form-group">
-          <label for="inputImage">Image</label>
-          <input class="form-control-file user_image" accept="image/*" type="file" name="user[profile_image]" id="user_profile_image">
+          <label for="inputImage">Image</label><br>
+          <%= f.file_field :profile_image, accept: "image/*" %>
         </div>
         <div class="form-group">
-          <label for="inputIntroductione">Introduction</label>
-          <textarea class="form-control introduction" name="user[introduction]" id="user_introduction"></textarea>
+          <label for="inputIntroduction">Introduction</label>
+          <%= f.text_area :introduction, class:"form-control"%>
         </div>
         <div class="form-group">
-         <input type="submit" name="commit" value="Update User" class="btn btn-secondary" data-disable-with="Update User">
-        </div>
-      <% end %>
+        <%= f.submit 'Update User', class: "btn btn-success" %>
+       </div>
+      <% end %>  
     </div>
   </div>
-</div>
+</div>  

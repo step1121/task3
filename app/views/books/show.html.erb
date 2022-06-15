@@ -1,4 +1,6 @@
-
+<% if notice %>
+  <%= notice %>
+<% end %>
 <div class="container">
   <div class="row">
     <div class="col-md-3">
@@ -12,9 +14,9 @@
          <tr>
            <td>
              <%= image_tag @book.user.get_profile_image(100,100) %>
-               <%= link_to user_path(@book.user.id) do %>
-               <%= @book.user.name %>
-               <% end %>
+             <%= link_to user_path(@book.user.id) do %>
+             <%= @book.user.name %>
+             <% end %>
            </td>
            <td>
              <%= link_to book_path(@book.id) do%>
@@ -22,24 +24,22 @@
              <% end %>
            </td>
            <td>
-             <%= link_to book_path(@book.id) do%>
                <%= @book.body %>
-             <% end %>
            </td>
            
            <td>
-             <button type="button" class="btn btn-sm btn-success">
-               <% if @book.user == current_user %>
-                 <%= link_to "Edit", edit_book_path(@book.id), class: 'text-light' %>
-               <% end %>
-             </button>
+             <% if @book.user == current_user %>
+              <button type="button" class="btn btn-sm btn-success">
+               <%= link_to "Edit", edit_book_path(@book.id), class: 'text-light' %>
+              </button>
+             <% end %>
            </td>
            <td>
-             <button type="button" class="btn btn-sm btn-danger">
-               <% if @book.user == current_user %>
+             <% if @book.user == current_user %>
+               <button type="button" class="btn btn-sm btn-danger">
                  <%= link_to "Destroy", book_path(@book), method: :delete,"data-confirm" => "Are you sure?", class: 'text-light' %>
-               <% end %>
-             </button>
+               </button>
+             <% end %>
            </td>
          </tr>
        </tbody>
